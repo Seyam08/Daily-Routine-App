@@ -1,5 +1,9 @@
-function App() {
-  return <h1>React daily routine app</h1>;
-}
+import { RoutineWrapper } from "./components/RoutineWrapper";
 
-export default App;
+export default function App() {
+  return (
+    <>
+      <RoutineWrapper />
+    </>
+  );
+}
