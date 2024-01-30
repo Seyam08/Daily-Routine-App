@@ -1,0 +1,14 @@
+.task_maker {
+  @apply px-5;
+}
+.task_input {
+  @apply block w-3/4 rounded-l-lg border-0 h-10 py-1.5 pl-7 pr-20 text-gray-900 outline-0 ring-yellow-400 ring-1 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-yellow-400 sm:text-sm sm:leading-6;
+}
+.task_name_add {
+  @apply flex;
+}
+
+button.add_task_btn {
+  @apply rounded-r-lg text-white bg-yellow-600 px-3 py-2 text-sm font-semibold shadow-sm
+  duration-300 hover:bg-yellow-400 hover:text-gray-700;
+}

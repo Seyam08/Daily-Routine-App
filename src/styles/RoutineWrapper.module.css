@@ -2,7 +2,7 @@
   @apply container mx-auto py-8;
 }
 .app_heading {
-  @apply text-2xl text-center underline decoration-sky-600 hover:decoration-blue-400 my-5;
+  @apply text-2xl text-center underline decoration-yellow-600 hover:decoration-yellow-400 my-5;
 }
 .rtn_layout {
   @apply grid grid-cols-2;
