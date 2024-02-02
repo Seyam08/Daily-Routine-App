@@ -2,18 +2,16 @@ import { DatePicker } from "keep-react";
 import { useState } from "react";
 import styles from "../styles/TaskMaker.module.css";
 
-export default function TaskMaker({ setTasks }) {
+export default function TaskMaker({ setTasks, setFrom, setTo }) {
   const [task, setTask] = useState("");
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const handelSubmit = (e) => {
     e.preventDefault();
     if (task && startTime && endTime) {
-      setTasks({
-        Task: task,
-        StartTime: startTime,
-        EndTime: endTime,
-      });
+      setTasks(task);
+      setFrom(startTime);
+      setTo(endTime);
     }
     setTask("");
   };
