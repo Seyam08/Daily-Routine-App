@@ -2,15 +2,20 @@ import { DatePicker } from "keep-react";
 import { useState } from "react";
 import styles from "../styles/TaskMaker.module.css";
 
-export default function TaskMaker() {
+export default function TaskMaker({ setTasks }) {
   const [task, setTask] = useState("");
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const handelSubmit = (e) => {
     e.preventDefault();
-    console.log(task);
-    console.log(startTime);
-    console.log(endTime);
+    if (task && startTime && endTime) {
+      setTasks({
+        Task: task,
+        StartTime: startTime,
+        EndTime: endTime,
+      });
+    }
+    setTask("");
   };
   return (
     <div className={styles.task_maker}>
@@ -22,6 +27,7 @@ export default function TaskMaker() {
             placeholder="What is the task?"
             onChange={(e) => setTask(e.target.value)}
             required
+            value={task}
           />
           <button type="submit" className={styles.add_task_btn}>
             Add
