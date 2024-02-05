@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/RoutineWrapper.module.css";
+import Task from "./Task";
 import TaskMaker from "./TaskMaker";
 
 export default function RoutineWrapper() {
@@ -16,7 +17,7 @@ export default function RoutineWrapper() {
       <h2 className={styles.app_heading}>Daily Routine App</h2>
       <div className={styles.rtn_layout}>
         <TaskMaker setTasks={setTasks} setFrom={setFrom} setTo={setTo} />
-        <div>right col</div>
+        <Task></Task>
       </div>
     </div>
   );
