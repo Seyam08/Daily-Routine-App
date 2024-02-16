@@ -1,22 +1,70 @@
-import { DatePicker } from "keep-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/TaskMaker.module.css";
 
 export default function TaskMaker({ setTasks }) {
   const [task, setTask] = useState("");
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [duration, setDuration] = useState();
+  const allHours = [
+    "12:00 AM",
+    "1:00 AM",
+    "2:00 AM",
+    "3:00 AM",
+    "4:00 AM",
+    "5:00 AM",
+    "6:00 AM",
+    "7:00 AM",
+    "8:00 AM",
+    "9:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "1:00 PM",
+    "2:00 PM",
+    "3:00 PM",
+    "4:00 PM",
+    "5:00 PM",
+    "6:00 PM",
+    "7:00 PM",
+    "8:00 PM",
+    "9:00 PM",
+    "10:00 PM",
+    "11:00 PM",
+  ];
+
+  useEffect(() => {
+    const durationCalc = () => {
+      const start = allHours.indexOf(startTime);
+      const end = allHours.indexOf(endTime);
+      const duration = end - start;
+      setDuration(duration);
+    };
+    durationCalc();
+  });
+
   const handelSubmit = (e) => {
     e.preventDefault();
+
     if (task && startTime && endTime) {
-      setTasks({
-        Task: task,
-        StartTime: startTime,
-        EndTime: endTime,
-      });
+      if (duration > 0) {
+        setTasks({
+          Task: task,
+          StartTime: startTime,
+          EndTime: endTime,
+          Duration: duration,
+        });
+      } else {
+        alert("Please select at least 1 hour!");
+      }
+    } else {
+      alert("Please select time!");
     }
     setTask("");
+    setStartTime("");
+    setEndTime("");
   };
+
   return (
     <div className={styles.task_maker}>
       <form onSubmit={handelSubmit}>
@@ -35,16 +83,41 @@ export default function TaskMaker({ setTasks }) {
         </div>
 
         <div className={styles.time_picker_area}>
-          <DatePicker time={setStartTime}>
-            <span className={styles.time_picker_text}>Select start time</span>
-            <DatePicker.Time />
-          </DatePicker>
+          <label className={styles.time_picker_text}>
+            Select start time
+            <select
+              value={startTime}
+              onChange={(e) => {
+                setStartTime(e.target.value);
+              }}
+              className={styles.time_picker_select}
+            >
+              {allHours.map((hour, index) => (
+                <option key={index} value={hour}>
+                  {hour}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
+
         <div className={styles.time_picker_area}>
-          <DatePicker time={setEndTime}>
-            <span className={styles.time_picker_text}>Select end time</span>
-            <DatePicker.Time />
-          </DatePicker>
+          <label className={styles.time_picker_text}>
+            Select start time
+            <select
+              value={endTime}
+              onChange={(e) => {
+                setEndTime(e.target.value);
+              }}
+              className={styles.time_picker_select}
+            >
+              {allHours.map((hour, index) => (
+                <option key={index} value={hour}>
+                  {hour}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
       </form>
     </div>

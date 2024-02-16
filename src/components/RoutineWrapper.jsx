@@ -13,6 +13,7 @@ export default function RoutineWrapper() {
       EndTime: "7:00am",
       completed: false,
       isEditing: false,
+      Duration: null,
     },
   ]);
   const addTasks = (task) => {
@@ -25,6 +26,7 @@ export default function RoutineWrapper() {
         EndTime: task.EndTime,
         completed: false,
         isEditing: false,
+        Duration: task.Duration,
       },
     ]);
   };
