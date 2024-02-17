@@ -1,0 +1,24 @@
+.task_display_area {
+  @apply col-span-3;
+}
+.table_caption_area {
+  @apply my-5 flex items-center justify-between px-6;
+}
+.table_caption_area > div {
+  @apply flex items-center gap-5;
+}
+.table_caption_area p {
+  @apply text-body-1 font-semibold text-metal-600;
+}
+.table_head_text {
+  @apply text-body-5 font-medium text-metal-400;
+}
+.table_body_area {
+  @apply divide-gray-300 divide-y;
+}
+.task_name {
+  @apply text-body-4 font-medium text-metal-600;
+}
+.task_info {
+  @apply text-cyan-600 font-bold;
+}

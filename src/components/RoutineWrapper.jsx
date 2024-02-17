@@ -11,9 +11,9 @@ export default function RoutineWrapper() {
       Task: "Go for walk",
       StartTime: "6:00am",
       EndTime: "7:00am",
-      completed: false,
       isEditing: false,
-      Duration: null,
+      Duration: 2,
+      state: "Incomplete",
     },
   ]);
   const addTasks = (task) => {
@@ -24,23 +24,20 @@ export default function RoutineWrapper() {
         Task: task.Task,
         StartTime: task.StartTime,
         EndTime: task.EndTime,
-        completed: false,
         isEditing: false,
         Duration: task.Duration,
+        state: "Incomplete",
       },
     ]);
   };
-  // console.log(tasks);
+
   return (
     <div className={styles.rtn_wrapper}>
       <h2 className={styles.app_heading}>Daily Routine App</h2>
       <div className={styles.rtn_layout}>
         <TaskMaker setTasks={addTasks} />
-        {/* {tasks.map((task) => (
-          <Task key={task.id} task={task} />
-          // console.log(task);
-        ))} */}
-        <Task key={tasks.id} tasks={tasks} />
+        {console.log(tasks)}
+        <Task key={tasks.id} tasks={tasks} setTasks={setTasks} />
       </div>
     </div>
   );

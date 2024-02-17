@@ -5,5 +5,5 @@
   @apply text-2xl text-center underline decoration-yellow-600 hover:decoration-yellow-400 my-5;
 }
 .rtn_layout {
-  @apply grid grid-cols-2;
+  @apply grid grid-cols-5;
 }
