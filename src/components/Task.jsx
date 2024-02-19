@@ -1,3 +1,9 @@
+import {
+  faCheck,
+  faPenToSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge, CheckBox, Table } from "keep-react";
 import styles from "../styles/Task.module.css";
 
@@ -20,6 +26,17 @@ export default function Task({ tasks, setTasks }) {
       state: allComplete ? "Incomplete" : "Complete",
     }));
     setTasks(updatedTasks);
+  };
+  const editTask = (taskId) => {
+    const editedTask = tasks.map((task) =>
+      task.id === taskId
+        ? {
+            ...task,
+            isEditing: !task.isEditing,
+          }
+        : task
+    );
+    setTasks(editedTask);
   };
   return (
     <div className={styles.task_display_area}>
@@ -46,6 +63,7 @@ export default function Task({ tasks, setTasks }) {
           <Table.HeadCell>Start From</Table.HeadCell>
           <Table.HeadCell>End to</Table.HeadCell>
           <Table.HeadCell>Duration</Table.HeadCell>
+          <Table.HeadCell>Modify</Table.HeadCell>
         </Table.Head>
 
         <Table.Body className={styles.table_body_area}>
@@ -71,6 +89,31 @@ export default function Task({ tasks, setTasks }) {
               </Table.Cell>
               <Table.Cell>
                 <p className={styles.task_info}>{task.Duration} hours</p>
+              </Table.Cell>
+              <Table.Cell>
+                {task.isEditing ? (
+                  <span className="p-3">
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      size="xl"
+                      onClick={() => editTask(task.id)}
+                      className="cursor-pointer"
+                    />
+                  </span>
+                ) : (
+                  <span className="p-3">
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      size="xl"
+                      onClick={() => editTask(task.id)}
+                      className="cursor-pointer"
+                    />
+                  </span>
+                )}
+
+                <span className="p-3">
+                  <FontAwesomeIcon icon={faTrashCan} size="xl" />
+                </span>
               </Table.Cell>
             </Table.Row>
           ))}
