@@ -5,9 +5,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge, CheckBox, Table } from "keep-react";
+import { useState } from "react";
 import styles from "../styles/Task.module.css";
 
 export default function Task({ tasks, setTasks }) {
+  const [editTaskName, setEditTaskName] = useState("");
   const handleCheckbox = (taskId) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId
@@ -32,11 +34,33 @@ export default function Task({ tasks, setTasks }) {
       task.id === taskId
         ? {
             ...task,
-            isEditing: !task.isEditing,
+            isEditing: true,
           }
         : task
     );
     setTasks(editedTask);
+  };
+
+  const submitEditTask = (taskId) => {
+    if (editTaskName) {
+      const editedTask = tasks.map((task) =>
+        task.id === taskId
+          ? {
+              ...task,
+              Task: editTaskName,
+              isEditing: false,
+            }
+          : task
+      );
+      setTasks(editedTask);
+      setEditTaskName("");
+    } else {
+      alert("Please provide a valid name!");
+    }
+  };
+  const deleteTask = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
   };
   return (
     <div className={styles.task_display_area}>
@@ -76,7 +100,15 @@ export default function Task({ tasks, setTasks }) {
                 />
               </th>
               <Table.Cell>
-                <p className={styles.task_name}>{task.Task}</p>
+                {task.isEditing ? (
+                  <input
+                    onChange={(e) => setEditTaskName(e.target.value)}
+                    value={editTaskName}
+                    className={styles.edit_task_input}
+                  />
+                ) : (
+                  <p className={styles.task_name}>{task.Task}</p>
+                )}
               </Table.Cell>
               <Table.Cell>
                 <p className={styles.task_info}>{task.state}</p>
@@ -96,7 +128,9 @@ export default function Task({ tasks, setTasks }) {
                     <FontAwesomeIcon
                       icon={faCheck}
                       size="xl"
-                      onClick={() => editTask(task.id)}
+                      onClick={() => {
+                        submitEditTask(task.id);
+                      }}
                       className="cursor-pointer"
                     />
                   </span>
@@ -112,7 +146,12 @@ export default function Task({ tasks, setTasks }) {
                 )}
 
                 <span className="p-3">
-                  <FontAwesomeIcon icon={faTrashCan} size="xl" />
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    size="xl"
+                    onClick={() => deleteTask(task.id)}
+                    className="cursor-pointer"
+                  />
                 </span>
               </Table.Cell>
             </Table.Row>
