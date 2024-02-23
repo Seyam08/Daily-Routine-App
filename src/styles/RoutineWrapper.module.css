@@ -1,9 +1,9 @@
 .rtn_wrapper {
-  @apply container mx-auto py-8;
+  @apply lg:container mx-auto py-8;
 }
 .app_heading {
   @apply text-2xl text-center underline decoration-yellow-600 hover:decoration-yellow-400 my-5;
 }
 .rtn_layout {
-  @apply grid grid-cols-5;
+  @apply grid lg:grid-cols-5;
 }

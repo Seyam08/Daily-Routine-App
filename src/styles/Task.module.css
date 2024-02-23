@@ -1,5 +1,5 @@
 .task_display_area {
-  @apply col-span-3;
+  @apply lg:col-span-3;
 }
 .table_caption_area {
   @apply my-5 flex items-center justify-between px-6;

@@ -36,7 +36,6 @@ export default function RoutineWrapper() {
       <h2 className={styles.app_heading}>Daily Routine App</h2>
       <div className={styles.rtn_layout}>
         <TaskMaker setTasks={addTasks} />
-        {console.log(tasks)}
         <Task key={tasks.id} tasks={tasks} setTasks={setTasks} />
       </div>
     </div>

@@ -1,5 +1,5 @@
 .task_maker {
-  @apply px-5 col-span-2;
+  @apply px-5 lg:col-span-2;
 }
 .task_input {
   @apply block w-3/4 rounded-l-lg border-0 h-10 py-1.5 pl-7 pr-20 text-gray-900 outline-0 ring-yellow-400 ring-1 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-yellow-400 sm:text-sm sm:leading-6;
