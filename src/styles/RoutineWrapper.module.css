@@ -1,5 +1,5 @@
 .rtn_wrapper {
-  @apply lg:container mx-auto py-8;
+  @apply xl:container mx-auto py-8;
 }
 .app_heading {
   @apply text-2xl text-center underline decoration-yellow-600 hover:decoration-yellow-400 my-5;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import styles from "../styles/RoutineWrapper.module.css";
 import Task from "./Task";
@@ -16,8 +16,23 @@ export default function RoutineWrapper() {
       state: "Incomplete",
     },
   ]);
+  useEffect(() => {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [
+      {
+        id: uniqid(),
+        Task: "Go for walk",
+        StartTime: "6:00am",
+        EndTime: "7:00am",
+        isEditing: false,
+        Duration: 2,
+        state: "Incomplete",
+      },
+    ];
+    setTasks(tasks);
+  }, [setTasks]);
+
   const addTasks = (task) => {
-    setTasks([
+    const newTasks = [
       ...tasks,
       {
         id: uniqid(),
@@ -28,7 +43,9 @@ export default function RoutineWrapper() {
         Duration: task.Duration,
         state: "Incomplete",
       },
-    ]);
+    ];
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
   };
 
   return (

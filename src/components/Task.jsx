@@ -20,6 +20,7 @@ export default function Task({ tasks, setTasks }) {
         : task
     );
     setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
   const handleMasterCheckbox = () => {
     const allComplete = tasks.every((task) => task.state === "Complete");
@@ -28,6 +29,7 @@ export default function Task({ tasks, setTasks }) {
       state: allComplete ? "Incomplete" : "Complete",
     }));
     setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
   const editTask = (taskId) => {
     const editedTask = tasks.map((task) =>
@@ -40,7 +42,6 @@ export default function Task({ tasks, setTasks }) {
     );
     setTasks(editedTask);
   };
-
   const submitEditTask = (taskId) => {
     if (editTaskName) {
       const editedTask = tasks.map((task) =>
@@ -53,6 +54,7 @@ export default function Task({ tasks, setTasks }) {
           : task
       );
       setTasks(editedTask);
+      localStorage.setItem("tasks", JSON.stringify(editedTask));
       setEditTaskName("");
     } else {
       alert("Please provide a valid name!");
@@ -61,6 +63,7 @@ export default function Task({ tasks, setTasks }) {
   const deleteTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
   return (
     <div className={styles.task_display_area}>
@@ -124,7 +127,7 @@ export default function Task({ tasks, setTasks }) {
               </Table.Cell>
               <Table.Cell>
                 {task.isEditing ? (
-                  <span className="p-3">
+                  <span className={styles.icon_gap}>
                     <FontAwesomeIcon
                       icon={faCheck}
                       size="xl"
@@ -135,7 +138,7 @@ export default function Task({ tasks, setTasks }) {
                     />
                   </span>
                 ) : (
-                  <span className="p-3">
+                  <span className={styles.icon_gap}>
                     <FontAwesomeIcon
                       icon={faPenToSquare}
                       size="xl"
@@ -145,7 +148,7 @@ export default function Task({ tasks, setTasks }) {
                   </span>
                 )}
 
-                <span className="p-3">
+                <span className={styles.icon_gap}>
                   <FontAwesomeIcon
                     icon={faTrashCan}
                     size="xl"
