@@ -1,6 +1,6 @@
 # Daily Routine App
 
-Introducing a straightforward Daily Routine App built with React. This app enables users to effortlessly track their tasks, offering features such as adding, editing, and deleting tasks. Additionally, users can select task durations and mark tasks as completed.
+A Daily Routine App built with React. This app allows users to track their tasks, with features such as editing, and deleting tasks. Also, users can select task durations and mark tasks as completed.
 
 ## Live preview link
 
