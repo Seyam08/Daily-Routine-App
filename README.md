@@ -18,7 +18,7 @@ https://daily-routine08.netlify.app/
 
 ## Installation
 
-Install my-project with npm
+Install this app with npm
 
 1. Clone the repository:
 
