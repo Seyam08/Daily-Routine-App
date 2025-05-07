@@ -84,7 +84,7 @@ export default function TaskMaker({ setTasks }) {
 
         <div className={styles.time_picker_area}>
           <label className={styles.time_picker_text}>
-            Select start time
+            <h3>Select start time</h3>
             <select
               value={startTime}
               onChange={(e) => {
@@ -103,7 +103,7 @@ export default function TaskMaker({ setTasks }) {
 
         <div className={styles.time_picker_area}>
           <label className={styles.time_picker_text}>
-            Select End time
+            <h3>Select End time</h3>
             <select
               value={endTime}
               onChange={(e) => {
